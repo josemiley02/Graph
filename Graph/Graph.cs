@@ -1,4 +1,5 @@
 using Graph.Edge;
+using Graph.Search.BFS;
 using Graph.Vertex;
 
 namespace Graph;
@@ -49,5 +50,11 @@ public class Graph<T> : IGraph<T>
     public IEnumerable<IVertex<T>> GetVertexValues()
     {
         return Vertexs;
+    }
+    public BFS<T> BFS(Vertex<T> start)
+    {
+        var BFS = new BFS<T>(this, start);
+        BFS.Search();
+        return BFS;
     }
 }
