@@ -20,9 +20,15 @@ public class Graph<T> : IGraph<T>
     private List<Vertex<T>> Vertexs = new List<Vertex<T>>();
     private List<Edge<T>> Edges = new List<Edge<T>>();
 
-    public void AddEdge(IVertex<T> from, IVertex<T> to)
+    public void AddEdge(T from, T to)
     {
-        var edge = new Edge<T>(from, to);
+        var vFrom = Vertexs.FirstOrDefault(v => v.Value!.Equals(from));
+        var vTo = Vertexs.FirstOrDefault(v => v.Value!.Equals(to));
+        if (vFrom is null || vTo is null)
+        {
+            throw new ArgumentException("Vertex not found");
+        }
+        var edge = new Edge<T>(vFrom, vTo);
         if (Edges.Any(e => e.Equals(edge)))
         {
             throw new ArgumentException("Edge already exists");
@@ -51,9 +57,11 @@ public class Graph<T> : IGraph<T>
     {
         return Vertexs;
     }
-    public BFS<T> BFS(Vertex<T> start)
+    public BFS<T> BFS(T start)
     {
-        var BFS = new BFS<T>(this, start);
+        var vStart = Vertexs.FirstOrDefault(v => v.Value!.Equals(start));
+        if (vStart is null) throw new ArgumentException("Vertex not found");
+        var BFS = new BFS<T>(this, vStart);
         BFS.Search();
         return BFS;
     }
