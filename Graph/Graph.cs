@@ -1,7 +1,7 @@
 using Graph.Edge;
 using Graph.Search.BFS;
 using Graph.Vertex;
-
+using Graph.Search.DFS;
 namespace Graph;
 
 public class Graph<T> : IGraph<T>
@@ -56,5 +56,12 @@ public class Graph<T> : IGraph<T>
         var BFS = new BFS<T>(this, start);
         BFS.Search();
         return BFS;
+    }
+
+    public DFS<T> DFS()
+    {
+        var DFS = new DFS<T>(this);
+        DFS.Search();
+        return DFS;
     }
 }
