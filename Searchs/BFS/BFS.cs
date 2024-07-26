@@ -29,7 +29,7 @@ public class BFS<T>
             var vertex = queue.Dequeue();
             foreach (var neighbor in vertex.Neighbors)
             {
-                if (Distances[neighbor.Id] == 0)
+                if (Distances[neighbor.Id] == int.MaxValue)
                 {
                     Distances[neighbor.Id] = Distances[vertex.Id] + 1;
                     Parents[neighbor.Id] = vertex;
