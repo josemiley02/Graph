@@ -6,14 +6,18 @@ public static class Program
 {
     public static void Main()
     {
-        Graph<char> graph = new Graph<char>('B','C','D','E','S','V');
-        graph.AddEdge('S','B');
-        graph.AddEdge('S','C');
-        graph.AddEdge('B','D');
-        graph.AddEdge('C','D');
-        graph.AddEdge('C','E');
-        graph.AddEdge('E','V');
+        Graph<char> graph = new Graph<char>('s', 'r', 'v', 'w', 't', 'u', 'x', 'y');
+        graph.AddEdge('s', 'r');
+        graph.AddEdge('r', 'v');
+        graph.AddEdge('s', 'w');
+        graph.AddEdge('w', 't');
+        graph.AddEdge('w', 'x');
+        graph.AddEdge('t', 'u');
+        graph.AddEdge('u', 'x');
+        graph.AddEdge('u', 'y');
+        graph.AddEdge('x', 't');
+        graph.AddEdge('x', 'y');
 
-        var bfs = graph.BFS('S');
+        var dfs = graph.DFS();
     }
 }

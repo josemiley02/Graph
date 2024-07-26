@@ -22,12 +22,12 @@ public class DFS<T>
     }
     public void Search()
     {
-        CC = 1;
         foreach (var item in _graph.GetVertexValues())
         {
             if (!Visited[item.Id])
             {
                 Update((Vertex<T>)item);
+                CC++;
             }
         }
     }
@@ -36,7 +36,6 @@ public class DFS<T>
         time += 1;
         DiscoverTime[vertex.Id] = time;
         Visited[vertex.Id] = true;
-        CC += 1;
         foreach (var neighbor in vertex.Neighbors)
         {
             if (!Visited[neighbor.Id])
